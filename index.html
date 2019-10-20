@@ -27,6 +27,214 @@
 			<div class="slides">
 				<section>Slide 1</section>
 				<section>Slide 2</section>
+        		<section data-markdown>
+				  <textarea data-template>
+					# whoami
+					  
+					- 5 yrs clojure developmemt
+					- aprint, debugger author
+					- awesome-clojure list curator
+					- @hardcodefm host
+					- ashamed clojure.ru curator
+				  </textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					  # where
+						
+					  - barnaul from moscow as far as rust from clojure
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					  # podcasting
+						
+					  - 
+
+					  
+					</textarea>
+					<aside class="notes">
+						russian is worth learning, as while speaking about programming languages I tend to suggest people learning clojure,
+						I suggest lispers to learn russian, guest why? because russian talk in lisp (TODO: slide picture from chat)
+						but lets get serious, lets talk about brackets
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# unique: most flexible and language
+
+						- close to ruby as per "change-anything" at runtime
+						- written in clear high-level language
+						- relatively performant
+						- source is quite self-explanatory and educationable
+					</textarea>
+					<aside class="notes">
+						- I'm keen to say that clj is the most flexible language (somewhere near ruby) I ever saw
+						- doesn't require to think about memry management and c-extensions
+						- as the parser is basically a depth-first tree walk - a good (just as any lisp)
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# WHY#1
+
+						- I want to keep thinking in clojure 
+						- use clojure fns, semantic, dynamism / jvm batteries
+						- stay in REPL
+						- not access REPL state from the editor
+						- I care about my development flow
+						- not just typings amount
+						- about composability of little dirty pieces of code 
+						- easy to explore
+					</textarea>
+					<aside class="notes">
+						- I wont be talking about why evaling arbitrary sexps is bad, there's a very similar talk but about python notepads TODO link/slide
+						- I just mention, that I use emacs and I use cider, but mainly only refresh 
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# WHY#2
+
+						- no clojure fork, (holy rich!)
+						- nothing strange inside the committed codebase
+						- not selling anything to anybody
+					</textarea>
+					<aside class="notes">
+						- just explaining how it works for me
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# why not CIDER / emacs plugin
+						- use clojure / jvm batteries
+						- stay in REPL
+						- not access REPL state from the editor
+						- 
+						- explore
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					  # lets talk about brackets
+						
+					  - search for fork
+					  - count difff lines for that
+					</textarea>
+				</section>
+				<!-- <section data-markdown>
+					<textarea data-template>
+					  # lets talk about issues
+						
+					  - search "quit" clojure articles
+					  - count issues in jira
+					  - talk about examples
+					</textarea>
+					<aside class="notes">
+						but let's get deeper, 
+						why would you need to change anything? maybe because something doesn't work for you
+					</aside>
+				</section> -->
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about macros
+						
+						- still sexps
+						- validated
+						- not really a language, but DSL
+					</textarea>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about read literals
+						
+						- beyond sexp
+						- discouraged
+					</textarea>
+					<aside class="notes">
+						
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about regexps
+						
+						- instead of (->> coll (filter #(re-find #"smth" %))) 
+						- you want this (->> coll (filter #"smth"))
+					</textarea>
+					<aside class="notes">
+						TODO: slide about 1 more problem
+						suppose you're often working in the repl and exploring data based on filtering of text values
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about brackets
+						
+						- instead of `(->> coll (filter #"smth"))`
+						- you want this `coll | filter #"smth"`
+						- i.e. a `|` opens a 
+					</textarea>
+					<aside class="notes">
+						- yes you can, but I suggest to start looking at development of your own REPL instead of 
+						- TODO: slide about rebel
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about classloaders
+						
+						- java delegates search to parent first
+						- clojure is different: top searched first
+					</textarea>
+					<aside class="notes">
+						just to get on the same line - a couple of reminders how a typical classloader works in java
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about origins
+						
+						- `{}`, `[]` are clojure.lang.IMeta
+						- `String`, `Integer` etc are java native
+					</textarea>
+					<aside class="notes">
+						I wanted to track origin of the hashes in order to be able not just print 
+						I just remember you, that would just help me to write (oh god no, copypaste, we all love) tests for my function
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# lets talk about origins
+						
+						- `(def ring-req {...})
+						- instead of this `(is (= {:a 1 :b {...}} (f ring-req)}))`
+						- I wanted this `(is (= {:a 1 :b ring-req} (f ring-req)}))`
+						- ideally I wanted to deduce the shortest possible path
+						- without conditions
+						- to merge constants, variables and arguments into a result
+						- i.e. given a structure I wanted to ensure a presence of a unique codepath execution line corresponding to this
+						- and express it in terms of assoc/dissoc/merge/conj/disj
+					</textarea>
+					<aside class="notes">
+						I wanted to track origin of the hashes in order to be able not just print 
+						I just remember you, that would just help me to write (oh god no, copypaste, we all love) tests for my function
+						vars are changing but why
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# fin
+						
+						- dream big
+						- change and adapt your tools for yourself
+						- think globally
+						- act locally
+					</textarea>
+				</section>
 			</div>
 		</div>
 
