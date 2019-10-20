@@ -191,7 +191,7 @@
 					</textarea>
 					<aside class="notes">
 						- yes you can, but I suggest to start looking at development of your own REPL instead of 
-						- TODO: ads rebel-readline
+						- TODO: ads rebel-readline1
 					</aside>
 				</section>
 				<section data-markdown>
@@ -248,6 +248,30 @@
 						I just remember you, that would just help me to write (oh god no, copypaste, we all love) tests for my function
 						vars are changing but why
 					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# let's talk about startup time
+						
+						- `time clj -e ''`
+						- takes	2.06s on my MBP
+						- clj -A / lein repl / etc on a repl project
+						- takes forever
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# ideas
+						
+						- don't restart repl
+						- TODO: ads pomergranate
+						- persistent jvm
+						- TODO: link to why androind slow -> core
+						- reduce core by physically deleting functions
+						- what if we gather eveything on runtime and assume that we don't eval 
+						- again - it's DEVELOPMENT clojure build, don't use on prod
+						- TODO: ads dunaj
+					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
