@@ -89,7 +89,9 @@
 					</textarea>
 					<aside class="notes">
 						- I wont be talking about why evaling arbitrary sexps is bad, there's a very similar talk but about python notepads TODO link/slide
-						- I just mention, that I use emacs and I use cider, but mainly only refresh 
+						- I just mention, that I use emacs and I use cider, but mainly only refresh and at most 1 sexp eval of test code afterwards
+						- I dont eval 2 sexps 1 after another 
+						- I done eval buffers files etc
 					</aside>
 				</section>
 				<section data-markdown>
@@ -176,7 +178,7 @@
 						
 						- instead of `(->> coll (filter #"smth"))`
 						- you want this `coll | filter #"smth"`
-						- i.e. a `|` opens a 
+						- i.e. a `|` searches first fn after last `|`, if there's such arity => close bracket, go 1 level up, otherwise open a bracket
 					</textarea>
 					<aside class="notes">
 						- yes you can, but I suggest to start looking at development of your own REPL instead of 
