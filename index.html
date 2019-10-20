@@ -35,8 +35,17 @@
 					- aprint, debugger author
 					- awesome-clojure list curator
 					- @hardcodefm host
-					- ashamed clojure.ru curator
+					- @razum2um - tweet mostly about clojure / functional code
+					- ashamed, humbled clojure.ru curator
 				  </textarea>
+				  <aside class="notes">
+					sometimes during my talk there will be some advertisements (which we all love) which mention some awesome libraries which you may not know,
+					but if you don't please, check them out. this also resembles me on my very old idea how to make people return to the talk after the confs, 
+					so the slides will be published, links will be available
+					and you won't be alble to adblock this (hahaha), sad story: I wasn't not paid for them
+
+					also you could check my list of clojurian who you also may be interested to follow
+				  </aside>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
@@ -178,11 +187,24 @@
 						
 						- instead of `(->> coll (filter #"smth"))`
 						- you want this `coll | filter #"smth"`
-						- i.e. a `|` searches first fn after last `|`, if there's such arity => close bracket, go 1 level up, otherwise open a bracket
+						- i.e. a `|` searches first fn after last `|`, if there's such arity => close bracket, go 1 level up (as may closing brackets possible), otherwise open a bracket
 					</textarea>
 					<aside class="notes">
 						- yes you can, but I suggest to start looking at development of your own REPL instead of 
-						- TODO: slide about rebel
+						- TODO: ads rebel-readline
+					</aside>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						# modify prev command
+						
+						- `(-> obj fn-returns-coll (->> (map f1))))
+						- you want this `coll | filter #"smth"`
+						- i.e. a `|` searches first fn after last `|`, if there's such arity => close bracket, go 1 level up (as may closing brackets possible), otherwise open a bracket
+					</textarea>
+					<aside class="notes">
+						- does it reminds about bash pipe? yeah, bash pipe is awesome, unfortunately it's the only the single positive featute of bash and others 
+						- TODO: ads clj-condo
 					</aside>
 				</section>
 				<section data-markdown>
