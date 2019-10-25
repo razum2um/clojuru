@@ -4,14 +4,114 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Hacking on clojure.core & runtime</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+		<!-- <link rel="stylesheet" href="lib/css/monokai.css"> -->
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<style>
+			@font-face {
+				font-family: 'Gill Sans';
+				font-style: normal;
+				font-weight: 400;
+				src: url('/fonts/GillSans.ttf') format("truetype");
+			}
+
+			.reveal section img.plain {
+			  width: 50%;
+			}
+	   
+			.reveal section img.big {
+			  width: 90%;
+			}
+	   
+			.reveal,
+			.reveal h1,
+			.reveal h2,
+			.reveal h3,
+			.reveal h4,
+			.reveal h5,
+			.reveal h6 {
+				font-family: 'Gill Sans', sans-serif !important;
+			}
+
+			section ul li {
+				font-size: 1.55em;
+			}
+
+			.reveal section .borderless {
+				border: none;
+				box-shadow: none;
+			}
+
+			img.clj,
+			img.razum2um,
+			img.mad,
+			img.map {
+				height: 700px;
+			}
+
+			img.miniclj {
+				height: 300px;
+			}
+
+			img.minigolang {
+				height: 300px;
+			}
+
+			.logos {
+				position: absolute;
+				display: flex;
+				width: 1400px;
+				top: 13%;
+				justify-content: space-between;
+				left: 13%;
+			}
+
+			.logos .minigolang {
+				margin-top: 250px;
+			}
+
+			.disclaimer {
+				font-size: 0.5em;
+			}
+
+			.flex {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.vflex {
+				flex-direction: column;
+			}
+
+			.push-down {
+				margin-top: 5em;
+			}
+
+			.reveal li {
+				list-style-type: square;
+			}
+
+			.reveal .lower {
+				text-transform: lowercase;
+			}
+
+			.reveal .capital {
+				text-transform: capitalize;
+			}
+
+			.reveal .twophase,
+			.reveal .gtrend {
+				max-height: 500px;
+			}
+		</style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -25,8 +125,41 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<img class='borderless clj' src='lib/images/clj.png' />
+					<h1>Hacking on clojure.core & runtime</h1>
+				</section>
+
+				<section>
+					<img src="lib/images/razum2um.jpg" alt="razum2um" class="borderless razum2um" />
+					<h2>Vlad Bokov</h2>
+					<a href="http://razum2um.me">@razum2um</a>
+				</section>
+
+				<section>
+					<img src="lib/images/mad.jpg" alt="mad" class="borderless mad" />
+					<h2>Mad Bokov</h2>
+					<a href="http://razum2um.me"></a>
+				</section>
+
+				<section>
+					<img src="lib/images/map.png" alt="map" class="borderless map" />
+					<div class="fragment logos">
+						<img class='borderless miniclj' src='lib/images/clj.png' />
+						<img class='borderless minigolang' src='lib/images/golang-russian.png' />
+					</div>
+				</section>
+
+				<section>
+					<h2>Let's get serios :) Who:</h2>
+					<ul>
+						<li class="fragment">encountered a clojure bug</li>
+						<li class="fragment">debugged clojure (JDWP etc)</li>
+						<li class="fragment">changed something inside clojure internals</li>
+						<li class="fragment">contributed back</li>
+					</ul>
+				</section>
+
         		<section data-markdown>
 				  <textarea data-template>
 					# whoami
@@ -310,11 +443,30 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				width: 1900,
+				height: 1200,
+				history: true,
+				controls: false,
+				fragments: true,
+				progress: true,
+				center: true,
+				touch: true,
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+				// keyboard: {
+				// 	85: uChoice, // u
+				// 	68: dChoice,  // d
+				// 	49: uChoice, // u, "1"
+				// 	50: dChoice,  // d, "2"
+				// 	82: rChoice, // r
+				// 	78: nChoice, // n
+				// 	80: pChoice, // p
+				// 	72: goToHell  // h
+				// },
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
 		</script>
