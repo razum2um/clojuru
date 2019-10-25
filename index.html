@@ -221,17 +221,45 @@
 
 						- I will be speaking to different topics & my experience
 						- Please, don't fork clojure for your production
+						- Don't expect me to present my shiny fork or give advice
 						- Be open to possible insigths
-						- Reopen slides tommorrow, checkout the links
+						- Reopen the slides later again, check out the links
+					</textarea>
+					<aside class="notes">
+						stay open minded
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Why talk about clojure?
+
+						- close to ruby as per "change-anything" at runtime (but JVM final)
+						- written in a clear high-level language
+						- *relatively* performant, [clojure-goes-fast](http://clojure-goes-fast.com/)
+						- source is quite educationable and *ideomatic*
+					</textarea>
+					<aside class="notes">
+						- I'm keen to say that clj is the most flexible language (somewhere near ruby) I ever saw
+						- doesn't require to think about memry management and c-extensions byte-level stuff
+						- as the parser is basically a depth-first tree walk - a good (just as any lisp)
+						- ruby parser is literally crazy, but clojure has first class persisstent ds impl
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# So, lets talk about...
 					</textarea>
 				</section>
 	
 				<section data-markdown>
 					<textarea data-template>
-						## Bugs
+						# Bugs
 
 						- [261 bugs open atm](https://clojure.atlassian.net/browse/CLJ-2522?jql=project%20%3D%20CLJ%20AND%20issuetype%20%3D%20Bug%20AND%20status%20%3D%20Open%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20priority%20DESC)
-						- [angry farewell letters]()
+						- there are farewell letters *due this*: [My Increasing Frustration With Clojure, 2016](http://ashtonkemerling.com/posts/my-increasing-frustration-with-clojure/)
+						- he mentioned 5 very long-running issues, 4 of them are still there
 					</textarea>
 				</section>
 
@@ -282,32 +310,147 @@
 						- static long abs(long a)
 					</textarea>
 				</section>
-	
-				<section>
-					<h1>Go deeper</h1>
-					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
-				</section>
-	
-					
+			
 				<section data-markdown>
 					<textarea data-template>
-						# Short intro into clojure source
+						# Dynamic types + interop != magic
+
+						- a is an Object
+						- Reflector.invokeMatchingMethod
+						- int version is found first
 					</textarea>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						# Deal with
+						# Lets try to workaround it
 
-						- src/jvm/clojure/lang/Compiler.java
-						- src/jvm/clojure/lang/LispReader.java
-						- src/jvm/clojure/lang/RT.java
-					</textarea>	
+						### note: `^` is just a meta :tag
+					</textarea>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						# Deal with
+						# Lets auto apply workaround
+
+						```
+						(defmacro defdef [name & body]
+						`(let [x# ~@body
+							t# (type x#)
+							v# (def ~name x#)]
+						(alter-meta! v# assoc :tag t#)
+						v#))
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# How about redefine `def`?
+
+						- but `def` is not a clojure.lang.Var
+						- it's `(get clojure.lang.Compiler/specials "def")`
+						- `clojure.lang.Compiler/specials` if `final` `PersistentHashMap`
+					</textarea>
+				</section>
+
+				<!-- ///// -->
+		
+				<section>
+					<h1>Go deeper</h1>
+					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# So, lets talk about...
+					</textarea>
+				</section>
+		
+				<section data-markdown>
+					<textarea data-template>
+						# Parens 
+					</textarea>
+				</section>	
+
+				<section data-markdown>
+					<textarea data-template>
+						# What if you want
+
+						```
+						defn foo [x]
+						  map inc (range x)
+						def my-list
+						  foo 10
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Ways to go
+
+						- Macros
+						- Tagged literals
+						- clojure.lang.LispReader
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Macros
+
+						- can read arbitrary number/nested of Symbols
+						- dont compose^W only compose with each other
+						- you know'em, bro
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Tagged literals
+
+						- happens after parsing
+						- can read only proper "read-string"-able 
+						- cannot accept "varargs"
+						- there's no closing tag
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# What if you tired to hold shift:
+						
+						```
+						[take 10 [map inc [range 10]]]
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Let's talk about clojure.lang.LispReader
+						
+						### Short intro into clojure source
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Deal with it
+
+						- src/jvm/clojure/lang/Compiler.java
+						- src/jvm/clojure/lang/LispReader.java
+						- src/jvm/clojure/lang/RT.java
+					</textarea>
+					<aside class="notes">
+						unless you're interested in persisted datastructures
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Deal with it
 
 						- src/jvm/clojure/lang/Compiler.java - 9125 lines
 						- src/jvm/clojure/lang/LispReader.java - 1699 lines
@@ -334,21 +477,7 @@
 	
 <!-- //////////////////  -->
         		
-				<section data-markdown>
-					<textarea data-template>
-						# Unique: most flexible and language
-
-						- close to ruby as per "change-anything" at runtime (but JVM final)
-						- written in clear high-level language
-						- *relatively* performant, [clojure-goes-fast](http://clojure-goes-fast.com/)
-						- source is quite self-explanatory and educationable
-					</textarea>
-					<aside class="notes">
-						- I'm keen to say that clj is the most flexible language (somewhere near ruby) I ever saw
-						- doesn't require to think about memry management and c-extensions
-						- as the parser is basically a depth-first tree walk - a good (just as any lisp)
-					</aside>
-				</section>
+				
 				<section data-markdown>
 					<textarea data-template>
 						# WHY#1
@@ -410,25 +539,12 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-					  # lets talk about brackets
+					  # lets talk about parens
 						
 					  - search for fork
 					  - count difff lines for that
 					</textarea>
 				</section>
-				<!-- <section data-markdown>
-					<textarea data-template>
-					  # lets talk about issues
-						
-					  - search "quit" clojure articles
-					  - count issues in jira
-					  - talk about examples
-					</textarea>
-					<aside class="notes">
-						but let's get deeper, 
-						why would you need to change anything? maybe because something doesn't work for you
-					</aside>
-				</section> -->
 				<section data-markdown>
 					<textarea data-template>
 						# lets talk about macros
