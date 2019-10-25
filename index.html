@@ -56,6 +56,10 @@
 				height: 700px;
 			}
 
+			img.why {
+				height: 900px;
+			}
+
 			img.miniclj {
 				height: 300px;
 			}
@@ -68,7 +72,7 @@
 				position: absolute;
 				display: flex;
 				width: 1400px;
-				top: 13%;
+				top: 30%;
 				justify-content: space-between;
 				left: 13%;
 			}
@@ -132,26 +136,71 @@
 
 				<section>
 					<img src="lib/images/razum2um.jpg" alt="razum2um" class="borderless razum2um" />
-					<h2>Vlad Bokov</h2>
-					<a href="http://razum2um.me">@razum2um</a>
+					<h1>Vlad Bokov</h1>
+					<a href="http://lunatic.cat">vlad@lunatic.cat</a>
+					<aside class="notes">
+						- we're doing outsource and continiously making things simpler(?)
+					</aside>
 				</section>
 
 				<section>
 					<img src="lib/images/mad.jpg" alt="mad" class="borderless mad" />
-					<h2>Mad Bokov</h2>
+					<h1>Mad Bokov</h1>
 					<a href="http://razum2um.me"></a>
+					<aside class="notes">
+						- like to give mad talks
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# whoami
+						
+						- 5 yrs clojure developmemt
+						- author of a few libs on clojars ~ 350 <3
+						- [awesome-clojure](https://github.com/razum2um/awesome-clojure) list curator
+						- [@razum2um](https://twitter.com/razum2um) - tweet mostly about clojure / functional code
+						- [@hardcodefm](http://twitter.com/hardcodefm) host
+					</textarea>
+					<aside class="notes">
+						sometimes during my talk there will be some advertisements (which we all love) which mention some awesome libraries which you may not know,
+						but if you don't please, check them out. this also resembles me on my very old idea how to make people return to the talk after the confs, 
+						so the slides will be published, links will be available
+						and you won't be alble to adblock this (hahaha), sad story: I wasn't not paid for them
+	
+						also you could check my list of clojurian who you also may be interested to follow
+					</aside>
 				</section>
 
 				<section>
+					<h1>Origin</h1>
 					<img src="lib/images/map.png" alt="map" class="borderless map" />
 					<div class="fragment logos">
 						<img class='borderless miniclj' src='lib/images/clj.png' />
 						<img class='borderless minigolang' src='lib/images/golang-russian.png' />
 					</div>
+					<aside class="notes">
+						- barnaul from moscow as far as go from clojure
+					</aside>
 				</section>
 
 				<section>
-					<h2>Let's get serios :) Who:</h2>
+					<h1>Psst, learn you some russian for the great good</h1>
+					<aside class="notes">
+						I'm glad the content of this talk will be available for all the clojure developers 
+
+						russian is worth learning, as while speaking about programming languages I tend to suggest people learning clojure,
+						I suggest lispers to learn russian, guest why? because russian talk in lisp (TODO: slide picture from chat)
+						but lets get serious, lets talk about brackets
+					</aside>
+				</section>
+
+				<section>
+					<img class='borderless why' src='lib/images/why-russian.png' />
+				</section>
+
+				<section>
+					<h1>Let's get serios (a poll)</h1>
 					<ul>
 						<li class="fragment">encountered a clojure bug</li>
 						<li class="fragment">debugged clojure (JDWP etc)</li>
@@ -160,47 +209,99 @@
 					</ul>
 				</section>
 
-        		<section data-markdown>
-				  <textarea data-template>
-					# whoami
-					  
-					- 5 yrs clojure developmemt
-					- aprint, debugger author
-					- awesome-clojure list curator
-					- @hardcodefm host
-					- @razum2um - tweet mostly about clojure / functional code
-					- ashamed, humbled clojure.ru curator
-				  </textarea>
-				  <aside class="notes">
-					sometimes during my talk there will be some advertisements (which we all love) which mention some awesome libraries which you may not know,
-					but if you don't please, check them out. this also resembles me on my very old idea how to make people return to the talk after the confs, 
-					so the slides will be published, links will be available
-					and you won't be alble to adblock this (hahaha), sad story: I wasn't not paid for them
-
-					also you could check my list of clojurian who you also may be interested to follow
-				  </aside>
-				</section>
 				<section data-markdown>
 					<textarea data-template>
-					  # where
-						
-					  - barnaul from moscow as far as rust from clojure
+						## Disclaimer
+
+						- I will be speaking to different topics & my experience
+						- Please, don't fork clojure for your production
+						- Be open to possible insigths
+						- Reopen slides tommorrow, checkout the links
 					</textarea>
 				</section>
+	
 				<section data-markdown>
 					<textarea data-template>
-					  # podcasting
-						
-					  - 
+						## Bugs
 
-					  
+						- [261 bugs open atm](https://clojure.atlassian.net/browse/CLJ-2522?jql=project%20%3D%20CLJ%20AND%20issuetype%20%3D%20Bug%20AND%20status%20%3D%20Open%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20priority%20DESC)
+						- [angry farewell letters]()
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Poll
+
+						```
+						(def a -10000000000000)
+						(Math/abs a) ;; => ?
+						```
 					</textarea>
 					<aside class="notes">
-						russian is worth learning, as while speaking about programming languages I tend to suggest people learning clojure,
-						I suggest lispers to learn russian, guest why? because russian talk in lisp (TODO: slide picture from chat)
-						but lets get serious, lets talk about brackets
+						Follow me, don't miss the latest hottest bugs out there
 					</aside>
 				</section>
+
+				<section>
+					<h1>Go deeper</h1>
+					<img src="lib/images/go-deeper.png" alt="map" class="borderless map" />
+				</section>
+	
+					
+				<section data-markdown>
+					<textarea data-template>
+						## Internals
+
+						- 
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Deal with
+
+						- src/jvm/clojure/lang/Compiler.java
+						- src/jvm/clojure/lang/LispReader.java
+						- src/jvm/clojure/lang/RT.java
+					</textarea>	
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Short intro into clojure source
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Deal with
+
+						- src/jvm/clojure/lang/Compiler.java - 9125 lines
+						- src/jvm/clojure/lang/LispReader.java - 1699 lines
+						- src/jvm/clojure/lang/RT.java - 2438
+
+						- intended in a very *special* way
+						- *almost* exclusively written by Rich
+						- *almost* untouched after 2011
+					</textarea>	
+					<aside class="notes">
+						holy rich!
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Compiler
+
+						- recursive analyzeSeq => Expr
+						- switch on Parser classes
+						- interface IParser { Expr parse(C context, Object form) }
+					</textarea>
+				</section>
+	
+
+        		
+				
 				<section data-markdown>
 					<textarea data-template>
 						# unique: most flexible and language
