@@ -40,6 +40,12 @@
 				font-family: 'Gill Sans', sans-serif !important;
 			}
 
+			.reveal section 	pre code {
+				font-size: 4em;
+				line-height: 1.5em;
+				max-height: 600px;
+			}
+
 			section ul li {
 				font-size: 1.55em;
 			}
@@ -211,7 +217,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## Disclaimer
+						# Disclaimer
 
 						- I will be speaking to different topics & my experience
 						- Please, don't fork clojure for your production
@@ -231,7 +237,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## Poll
+						# Poll
 
 						```
 						(def a -10000000000000)
@@ -243,33 +249,60 @@
 					</aside>
 				</section>
 
+				<section data-markdown>
+					<textarea data-template>
+						# Answer
+
+						- 1316134912
+						- [CLJ-1921](https://clojure.atlassian.net/browse/CLJ-1921)
+						- why?
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Dynamic types + interop != magic
+
+						```
+						(def ^Long a -10000000000000)
+						(Math/abs a)
+						Syntax error (IllegalArgumentException) 
+						More than one matching method found: abs
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Dynamic types + interop != magic
+
+						- static double abs(double a)
+						- static float abs(float a)
+						- static int abs(int a)
+						- static long abs(long a)
+					</textarea>
+				</section>
+	
 				<section>
 					<h1>Go deeper</h1>
-					<img src="lib/images/go-deeper.png" alt="map" class="borderless map" />
+					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
 				</section>
 	
 					
 				<section data-markdown>
 					<textarea data-template>
-						## Internals
-
-						- 
+						# Short intro into clojure source
+					</textarea>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						## Deal with
+						# Deal with
 
 						- src/jvm/clojure/lang/Compiler.java
 						- src/jvm/clojure/lang/LispReader.java
 						- src/jvm/clojure/lang/RT.java
 					</textarea>	
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						## Short intro into clojure source
-					</textarea>
 				</section>
 
 				<section data-markdown>
@@ -299,16 +332,15 @@
 					</textarea>
 				</section>
 	
-
+<!-- //////////////////  -->
         		
-				
 				<section data-markdown>
 					<textarea data-template>
-						# unique: most flexible and language
+						# Unique: most flexible and language
 
-						- close to ruby as per "change-anything" at runtime
+						- close to ruby as per "change-anything" at runtime (but JVM final)
 						- written in clear high-level language
-						- relatively performant
+						- *relatively* performant, [clojure-goes-fast](http://clojure-goes-fast.com/)
 						- source is quite self-explanatory and educationable
 					</textarea>
 					<aside class="notes">
@@ -544,8 +576,8 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
-				width: 1900,
-				height: 1200,
+				width: 2400,
+				height: 1800,
 				history: true,
 				controls: false,
 				fragments: true,
