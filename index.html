@@ -252,6 +252,8 @@
 						# So, lets talk about...
 					</textarea>
 				</section>
+
+				<!-- ///////// -->
 	
 				<section data-markdown>
 					<textarea data-template>
@@ -321,6 +323,7 @@
 					</textarea>
 				</section>
 
+
 				<section data-markdown>
 					<textarea data-template>
 						# Lets try to workaround it
@@ -343,6 +346,19 @@
 						```
 					</textarea>
 				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# How about redefine `def`, poll:
+
+						### what happens here
+
+						```
+						(def def def)
+						```
+					</textarea>
+				</section>
+
 
 				<section data-markdown>
 					<textarea data-template>
@@ -411,10 +427,13 @@
 						# Tagged literals
 
 						- happens after parsing
-						- can read only proper "read-string"-able 
-						- cannot accept "varargs"
-						- there's no closing tag
+						- can read only proper value (wrapped/scalar) 
+						- contradicts clojure mantra
+						- replaceable with macros
 					</textarea>
+					<aside class="notes">
+						the goal of making all code readable by all users of Clojure, without requiring optional code.
+					</aside>
 				</section>
 
 				<section data-markdown>
