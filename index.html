@@ -359,7 +359,6 @@
 					</textarea>
 				</section>
 
-
 				<section data-markdown>
 					<textarea data-template>
 						# How about redefine `def`?
@@ -368,6 +367,19 @@
 						- it's `(get clojure.lang.Compiler/specials "def")`
 						- `clojure.lang.Compiler/specials` if `final` `PersistentHashMap`
 					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Now what?
+
+						- we can hook & track *all* the `def`initions across deps
+						- theoretically we could store them elsewhere and *index*
+					</textarea>
+					<aside class="notes">
+						Did you know intelij has an own language parser inside all of theirs ides?
+						i.e. it rejects anything what runtime suggests, it's a pity
+					</aside>
 				</section>
 
 				<!-- ///// -->
@@ -438,6 +450,18 @@
 
 				<section data-markdown>
 					<textarea data-template>
+						# [jwymanm/chiara](https://github.com/jwymanm/chiara)
+
+						- done by macros
+						- nobody cares for about 5 years
+					</textarea>
+					<aside class="notes">
+						the goal of making all code readable by all users of Clojure, without requiring optional code.
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
 						# What if you tired to hold shift:
 						
 						```
@@ -494,8 +518,33 @@
 					</textarea>
 				</section>
 	
-<!-- //////////////////  -->
-        		
+				<!-- //////////////////  -->
+
+				<section data-markdown>
+					<textarea data-template>
+						## Regex
+
+						- <3 IFn protocol by Vector & Map since day 0
+						- yes, calling semantics is questionable
+						- but y not?
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Caveats
+
+						- [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
+						- and one of working projects bahaved very strange
+						- because of `(instance? Pattern)` :'(
+					</textarea>
+					<aside class="notes">
+						- one may argue that a logic shouldn't depend on classes and types, 
+						but people are doing this way
+					</aside>
+				</section>
+			
+				<!-- //////////////////  -->
 				
 				<section data-markdown>
 					<textarea data-template>
