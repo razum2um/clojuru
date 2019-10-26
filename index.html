@@ -44,14 +44,18 @@
 				font-family: 'Gill Sans', sans-serif !important;
 			}
 
-			.reveal section 	pre code {
+			.reveal section pre code {
 				font-size: 4em;
 				line-height: 1.5em;
 				max-height: 600px;
 			}
 
-			section ul li {
+			.reveal section > ul > li {
 				font-size: 2.2em;
+			}
+
+			.reveal section ul {
+				margin-bottom: 1.2em;
 			}
 
 			.reveal section .borderless {
@@ -218,6 +222,12 @@
 						<li class="fragment">changed something inside clojure internals</li>
 						<li class="fragment">contributed back</li>
 					</ul>
+					<aside class="notes">
+						I started patching after being tiered of 
+						some error message even back then at 1.6 
+						they were even worse
+						curiosity came afterwards
+					</aside>
 				</section>
 
 				<section data-markdown>
@@ -228,6 +238,7 @@
 						- Please, don't fork clojure for your production
 						- Don't expect me to present my shiny fork or give advice
 						- Be open to possible insigths
+						- Starting point to dig into sources
 						- Reopen the slides later again, check out the links
 					</textarea>
 					<aside class="notes">
@@ -243,6 +254,7 @@
 						- written in a clear high-level language
 						- *relatively* performant, [clojure-goes-fast](http://clojure-goes-fast.com/)
 						- source is quite educationable and *ideomatic*
+						- builds relatively fast
 					</textarea>
 					<aside class="notes">
 						- I'm keen to say that clj is the most flexible language (somewhere near ruby) I ever saw
@@ -514,7 +526,7 @@
 					<textarea data-template>
 						# @Compiler/specials
 
-						### 4-line changes, [razum2um/clojure:cljdef](https://github.com/clojure/clojure/compare/master...razum2um:cljdef)
+						### 4-line changes, [razum2um/clojure:cljdef](https://github.com/razum2um/clojure/compare/master...razum2um:cljdef)
 
 						```
 						(swap! clojure.lang.Compiler/specials
@@ -567,9 +579,10 @@
 						### (but java.util.regex.Pattern != IFn)
 
 						```
-						(->> coll
-							 (filter #"hello")
-							 (remove #"world"))
+						(->> [{:subj "hello" :to "clojuru"}
+							  {:subj "hello" :to "world"}]
+							 (filter (comp #"hello" :subj))
+							 (remove (comp #"world" :to)))
 						```
 					</textarea>
 				</section>
@@ -578,7 +591,8 @@
 					<textarea data-template>
 						# clojure.lang.IFn
 
-						- Vector & Map implement this <3
+						- Vector and Map implement this ❤️
+						- functions are composable
 						- yes, calling semantics is questionable
 						- but y not?
 					</textarea>
@@ -586,11 +600,32 @@
 
 				<section data-markdown>
 					<textarea data-template>
+						# clojure.lang.PatternFn
+
+						### see [razum2um/clojure:pattern-ifn](https://github.com/razum2um/clojure/compare/master...razum2um:pattern-ifn)
+
+						- got rid of many typehints :(
+						- LispReader: RegexReader#invoke
+						- RT: print
+						- core_print.clj: print-dup & print-method
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
 						# Caveats
 
-						- breaks things [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
-						- and one of working projects bahaved very strange
-						- because of `(instance? Pattern)` :'(
+						- breaks `(def ^Pattern #"")`
+							- [clojure/tools.reader](https://github.com/clojure/tools.reader/blob/23bfba4b3d4c35692beced1f2f64f818bdb64d75/src/main/clojure/clojure/tools/reader/impl/commons.clj#L46)
+						- breaks `(instance? Pattern x)`
+							- [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
+						- changes behaviour *tested* since 2009
+						
+						```
+						FAIL in (test-type-preds)
+								(predicates.clj:132)
+						(not ("ifn?" #"a*b"))
+						```
 					</textarea>
 					<aside class="notes">
 						- one may argue that a logic shouldn't depend on classes and types, 
