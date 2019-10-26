@@ -254,7 +254,143 @@
 				</section>
 
 				<!-- ///////// -->
+		
+				<section data-markdown>
+					<textarea data-template>
+						# Parens 
+					</textarea>
+				</section>	
+
+				<section data-markdown>
+					<textarea data-template>
+						# What if you want
+
+						```
+						defn foo [x]
+							map inc (range x)
+						def my-list
+							foo 10
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Ways to go
+
+						- Macros
+						- Tagged literals
+						- clojure.lang.LispReader
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Macros
+
+						- can read arbitrary number/nested of Symbols
+						- dont compose^W only compose with each other
+						- you know'em, bro
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Tagged literals
+
+						- happens after parsing
+						- can read only proper value (wrapped/scalar) 
+						- contradicts clojure mantra
+						- replaceable with macros
+					</textarea>
+					<aside class="notes">
+						the goal of making all code readable by all users of Clojure, without requiring optional code.
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# [jwymanm/chiara](https://github.com/jwymanm/chiara)
+
+						- done by macros
+						- nobody cares for about 5 years
+					</textarea>
+					<aside class="notes">
+						the goal of making all code readable by all users of Clojure, without requiring optional code.
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# What if you tired to hold shift:
+						
+						```
+						[take 10 [map inc [range 10]]]
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Let's talk about clojure.lang.LispReader
+						
+						### Short intro into clojure source
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Deal with it
+
+						- src/jvm/clojure/lang/Compiler.java
+						- src/jvm/clojure/lang/LispReader.java
+						- src/jvm/clojure/lang/RT.java
+					</textarea>
+					<aside class="notes">
+						unless you're interested in persisted datastructures
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Deal with it
+
+						- src/jvm/clojure/lang/Compiler.java - 9125 lines
+						- src/jvm/clojure/lang/LispReader.java - 1699 lines
+						- src/jvm/clojure/lang/RT.java - 2438
+
+						- intended in a very *special* way
+						- *almost* exclusively written by Rich
+						- *almost* untouched after 2011
+					</textarea>	
+					<aside class="notes">
+						holy rich!
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Compiler
+
+						- recursive analyzeSeq => Expr
+						- switch on Parser classes
+						- interface IParser { Expr parse(C context, Object form) }
+					</textarea>
+				</section>
 	
+				<!-- //////////////////  -->
+
+				<section>
+					<h1>Go deeper</h1>
+					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# So, lets talk about...
+					</textarea>
+				</section>
+			
 				<section data-markdown>
 					<textarea data-template>
 						# Bugs
@@ -401,142 +537,6 @@
 				</section>
 
 				<!-- ///// -->
-		
-				<section>
-					<h1>Go deeper</h1>
-					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# So, lets talk about...
-					</textarea>
-				</section>
-		
-				<section data-markdown>
-					<textarea data-template>
-						# Parens 
-					</textarea>
-				</section>	
-
-				<section data-markdown>
-					<textarea data-template>
-						# What if you want
-
-						```
-						defn foo [x]
-						  map inc (range x)
-						def my-list
-						  foo 10
-						```
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Ways to go
-
-						- Macros
-						- Tagged literals
-						- clojure.lang.LispReader
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Macros
-
-						- can read arbitrary number/nested of Symbols
-						- dont compose^W only compose with each other
-						- you know'em, bro
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Tagged literals
-
-						- happens after parsing
-						- can read only proper value (wrapped/scalar) 
-						- contradicts clojure mantra
-						- replaceable with macros
-					</textarea>
-					<aside class="notes">
-						the goal of making all code readable by all users of Clojure, without requiring optional code.
-					</aside>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# [jwymanm/chiara](https://github.com/jwymanm/chiara)
-
-						- done by macros
-						- nobody cares for about 5 years
-					</textarea>
-					<aside class="notes">
-						the goal of making all code readable by all users of Clojure, without requiring optional code.
-					</aside>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# What if you tired to hold shift:
-						
-						```
-						[take 10 [map inc [range 10]]]
-						```
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Let's talk about clojure.lang.LispReader
-						
-						### Short intro into clojure source
-					</textarea>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Deal with it
-
-						- src/jvm/clojure/lang/Compiler.java
-						- src/jvm/clojure/lang/LispReader.java
-						- src/jvm/clojure/lang/RT.java
-					</textarea>
-					<aside class="notes">
-						unless you're interested in persisted datastructures
-					</aside>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Deal with it
-
-						- src/jvm/clojure/lang/Compiler.java - 9125 lines
-						- src/jvm/clojure/lang/LispReader.java - 1699 lines
-						- src/jvm/clojure/lang/RT.java - 2438
-
-						- intended in a very *special* way
-						- *almost* exclusively written by Rich
-						- *almost* untouched after 2011
-					</textarea>	
-					<aside class="notes">
-						holy rich!
-					</aside>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						## Compiler
-
-						- recursive analyzeSeq => Expr
-						- switch on Parser classes
-						- interface IParser { Expr parse(C context, Object form) }
-					</textarea>
-				</section>
-	
-				<!-- //////////////////  -->
 
 				<section data-markdown>
 					<textarea data-template>
