@@ -54,8 +54,12 @@
 				font-size: 2.2em;
 			}
 
-			.reveal section ul {
+			/* .reveal section.margined ul {
 				margin-bottom: 1.2em;
+			} */
+
+			.reveal section ul {
+				margin-bottom: 0.2em;
 			}
 
 			.reveal section .borderless {
@@ -67,12 +71,13 @@
 			img.razum2um,
 			img.mad,
 			img.godeeper,
+			img.hardcode,
 			img.map {
 				height: 700px;
 			}
 
 			img.why {
-				height: 900px;
+				height: 1200px;
 			}
 
 			img.miniclj {
@@ -89,7 +94,8 @@
 				width: 1400px;
 				top: 30%;
 				justify-content: space-between;
-				left: 13%;
+				left: 50%;
+    			transform: translate(-50%, 0);
 			}
 
 			.logos .minigolang {
@@ -151,31 +157,30 @@
 
 				<section>
 					<img src="lib/images/razum2um.jpg" alt="razum2um" class="borderless razum2um" />
-					<h1>Vlad Bokov</h1>
-					<a href="http://lunatic.cat">vlad@lunatic.cat</a>
+					<h2>Vlad Bokov</h2>
+					<h3><a href="http://lunatic.cat">vlad@lunatic.cat</a></h3>
 					<aside class="notes">
 						- we're doing outsource and continiously making things simpler(?)
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<img src="lib/images/mad.jpg" alt="mad" class="borderless mad" />
-					<h1>Mad Bokov</h1>
-					<a href="http://razum2um.me"></a>
+					<h2>Mad Bokov</h2>
 					<aside class="notes">
 						- like to give mad talks
 					</aside>
-				</section>
+				</section> -->
 
 				<section data-markdown>
 					<textarea data-template>
 						# whoami
 						
 						- 5 yrs clojure developmemt
-						- author of a few libs on clojars ~ 350 <3
+						- [author](https://github.com/razum2um?utf8=%E2%9C%93&tab=repositories&q=&type=source&language=clojure) of a [few](https://github.com/clojure-ru?utf8=%E2%9C%93&q=&type=source&language=clojure) [libs](https://github.com/lunatic-cat?utf8=%E2%9C%93&q=&type=source&language=clojure)
 						- [awesome-clojure](https://github.com/razum2um/awesome-clojure) list curator
 						- [@razum2um](https://twitter.com/razum2um) - tweet mostly about clojure / functional code
-						- [@hardcodefm](http://twitter.com/hardcodefm) host
+						
 					</textarea>
 					<aside class="notes">
 						sometimes during my talk there will be some advertisements (which we all love) which mention some awesome libraries which you may not know,
@@ -200,7 +205,9 @@
 				</section>
 
 				<section>
-					<h1>Psst, learn you some russian for the great good</h1>
+					<h1><a href="http://twitter.com/hardcodefm">@hardcodefm</a> host</h1>
+					<img src="lib/images/hardcode.svg" alt="hardcodefm" class="borderless hardcode" />
+					<h2 class="fragment">Psst, learn you some russian <br> for the great good</h2>
 					<aside class="notes">
 						I'm glad the content of this talk will be available for all the clojure developers 
 
@@ -250,9 +257,11 @@
 					<textarea data-template>
 						# Why talk about clojure?
 
-						- close to ruby as per "change-anything" at runtime (but JVM final+immutable)
+						- close to ruby as per "change-anything" at runtime 
+							- but JVM final + immutable
 						- written in a clear high-level language
-						- *relatively* performant, [clojure-goes-fast](http://clojure-goes-fast.com/)
+						- *relatively* performant
+							- [clojure-goes-fast](http://clojure-goes-fast.com/)
 						- source is quite educationable and *ideomatic*
 						- builds relatively fast
 					</textarea>
@@ -261,6 +270,7 @@
 						- doesn't require to think about memry management and c-extensions byte-level stuff
 						- as the parser is basically a depth-first tree walk - a good (just as any lisp)
 						- ruby parser is literally crazy, but clojure has first class persisstent ds impl
+						- extensively uses RT and structures in source
 					</aside>
 				</section>
 
@@ -272,10 +282,9 @@
 
 				<!-- ///////// -->
 		
-				<section data-markdown>
-					<textarea data-template>
-						# Parens 
-					</textarea>
+				<section>
+					<h1>Parens</h1>
+					<h2 class="fragment">))))</h2>
 				</section>	
 
 				<section data-markdown>
@@ -318,10 +327,19 @@
 						- happens after parsing
 						- can read only proper value (wrapped/scalar) 
 						- contradicts clojure mantra
-						- replaceable with macros
+							- by [@puredanger](http://insideclojure.org/2018/06/21/tagged-literal/)
+						- [example gist](https://gist.github.com/razum2um/bdde7d13f47c31e42046f7b0b6aa818d)
+						
+						```
+						(jdef greeting "world")
+						(println (str "hello " greeting))
+						#jruby[puts "hello #{greeting}"]
+						```
 					</textarea>
 					<aside class="notes">
 						the goal of making all code readable by all users of Clojure, without requiring optional code.
+						they are like contructors for non specific datatypes
+						less than 20 lines
 					</aside>
 				</section>
 
@@ -339,6 +357,14 @@
 
 				<section data-markdown>
 					<textarea data-template>
+						# Let's talk about clojure.lang.LispReader
+						
+						### Short intro into clojure source
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
 						# What if you tired to hold shift:
 						
 						```
@@ -349,13 +375,18 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						# Let's talk about clojure.lang.LispReader
+						# clojure.lang.LispReader
 						
-						### Short intro into clojure source
+						- seems easy to change
+						- indeed 4 lines-diff in reader
+						- requires current clojure std to be rewritten
 					</textarea>
+					<aside class="notes">
+						syntax? macros!
+					</aside>
 				</section>
-
-				<section data-markdown>
+					
+				<!-- <section data-markdown>
 					<textarea data-template>
 						# Deal with it
 
@@ -393,7 +424,7 @@
 						- switch on Parser classes
 						- interface IParser { Expr parse(C context, Object form) }
 					</textarea>
-				</section>
+				</section> -->
 	
 				<!-- //////////////////  -->
 
@@ -611,7 +642,7 @@
 					</textarea>
 				</section>
 
-				<section data-markdown>
+				<section class='margined' data-markdown>
 					<textarea data-template>
 						# Caveats
 
@@ -857,7 +888,7 @@
 				progress: true,
 				center: true,
 				touch: true,
-				transition: 'fade', // none/fade/slide/convex/concave/zoom
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				// keyboard: {
 				// 	85: uChoice, // u
 				// 	68: dChoice,  // d
