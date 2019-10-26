@@ -625,7 +625,8 @@
 
 						```
 						(reify clojure.lang.Compiler.IParser
-					      (parse [])) ;; clojure.lang.Compiler.Expr
+						  ;; clojure.lang.Compiler.Expr
+						  (parse []))
 						```
 					</textarea>
 				</section>
@@ -640,7 +641,8 @@
 						```
 						(reify clojure.lang.Compiler.Expr
 						  (eval [])
-						  (emit []))
+						  (emit [context objx gen])
+						  ...))
 						```
 					</textarea>
 				</section>
