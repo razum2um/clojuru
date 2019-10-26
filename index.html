@@ -76,6 +76,7 @@
 			img.mad,
 			img.hardcode,
 			img.lispreader,
+			img.qrlink,
 			img.map {
 				height: 700px;
 			}
@@ -163,7 +164,8 @@
 				<section>
 					<img src="lib/images/razum2um.jpg" alt="razum2um" class="borderless razum2um" />
 					<h2>Vlad Bokov</h2>
-					<h3><a href="http://lunatic.cat">vlad@lunatic.cat</a></h3>
+					<h3><a href="https://lunatic.cat">vlad@lunatic.cat</a></h3>
+					<h3><a href="https://github.com/razum2um">@razum2um</a></h3>
 					<aside class="notes">
 						- we're doing outsource and continiously making things simpler(?)
 					</aside>
@@ -186,18 +188,12 @@
 						- [awesome-clojure](https://github.com/razum2um/awesome-clojure) list curator
 						- [@razum2um](https://twitter.com/razum2um) - tweet mostly about clojure / functional code
 						
+						note:
+						- also you could check my list of clojurian who you also may be interested to follow
 					</textarea>
-					<aside class="notes">
-						sometimes during my talk there will be some advertisements (which we all love) which mention some awesome libraries which you may not know,
-						but if you don't please, check them out. this also resembles me on my very old idea how to make people return to the talk after the confs, 
-						so the slides will be published, links will be available
-						and you won't be alble to adblock this (hahaha), sad story: I wasn't not paid for them
-	
-						also you could check my list of clojurian who you also may be interested to follow
-					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<h1>Origin</h1>
 					<img src="lib/images/map.png" alt="map" class="borderless map" />
 					<div class="fragment logos">
@@ -207,12 +203,13 @@
 					<aside class="notes">
 						- barnaul from moscow as far as go from clojure
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<h1><a href="http://twitter.com/hardcodefm">@hardcodefm</a> host</h1>
 					<img src="lib/images/hardcode.svg" alt="hardcodefm" class="borderless hardcode" />
-					<h2 class="fragment">Psst, learn you some russian <br> for the great good</h2>
+					<h2 class="fragment">Psst, who's watching the video<span class="fragment"><br>learn you some russian <br> for great good</span></h2>
+					<h2 class="fragment">Why?</h2>
 					<aside class="notes">
 						I'm glad the content of this talk will be available for all the clojure developers 
 
@@ -229,8 +226,8 @@
 				<section>
 					<h1>Let's get serios (a poll)</h1>
 					<ul>
-						<li class="fragment">encountered a clojure bug</li>
-						<li class="fragment">debugged clojure (JDWP etc)</li>
+						<li class="fragment">encountered/found a clojure bug</li>
+						<li class="fragment">was debugging clojure (JDWP etc)</li>
 						<li class="fragment">changed something inside clojure internals</li>
 						<li class="fragment">contributed back</li>
 					</ul>
@@ -251,10 +248,11 @@
 						- Be open to possible insigths
 						- Note starting points and examples to dig into the source
 						- Reopen the slides later again, check out the links
+						
+						note:
+						- stay open minded
+						- qr link afterwards
 					</textarea>
-					<aside class="notes">
-						stay open minded
-					</aside>
 				</section>
 
 				<section data-markdown>
@@ -263,19 +261,22 @@
 
 						- close to ruby as per "change-anything" at runtime 
 							- but JVM final + immutable
+							- alter-var-root (incl. clojure.core/)
+							- see [technomancy/robert-hooke](https://github.com/technomancy/robert-hooke) lib
 						- written in a clear high-level language
 						- *relatively* performant
 							- [clojure-goes-fast](http://clojure-goes-fast.com/)
 						- source is quite educationable and *ideomatic*
 						- builds relatively fast
-					</textarea>
-					<aside class="notes">
+					
+						note:
+						- verbosity of java is rather good
 						- I'm keen to say that clj is the most flexible language (somewhere near ruby) I ever saw
 						- doesn't require to think about memry management and c-extensions byte-level stuff
 						- as the parser is basically a depth-first tree walk - a good (just as any lisp)
 						- ruby parser is literally crazy, but clojure has first class persisstent ds impl
 						- extensively uses RT and structures in source
-					</aside>
+					</textarea>
 				</section>
 
 				<section data-markdown>
@@ -339,12 +340,13 @@
 						(println (str "hello " greeting))
 						#jruby[puts "hello #{greeting}"]
 						```
-					</textarea>
-					<aside class="notes">
-						the goal of making all code readable by all users of Clojure, without requiring optional code.
-						they are like contructors for non specific datatypes
-						less than 20 lines
-					</aside>
+					
+						note:
+						- the goal of making all code readable by all users of Clojure, without requiring optional code.
+						- they are like contructors for non specific datatypes
+						- less than 20 lines
+				</textarea>
+					
 				</section>
 
 				<section data-markdown>
@@ -353,10 +355,10 @@
 
 						- done by macros
 						- nobody cares for about 5 years
+						
+						note:
+						- the goal of making all code readable by all users of Clojure, without requiring optional code.
 					</textarea>
-					<aside class="notes">
-						the goal of making all code readable by all users of Clojure, without requiring optional code.
-					</aside>
 				</section>
 
 				<section>
@@ -469,10 +471,10 @@
 						(def a -10000000000000)
 						(Math/abs a) ;; => ?
 						```
+				
+						note:
+						- Follow me, don't miss the latest hottest bugs out there
 					</textarea>
-					<aside class="notes">
-						Follow me, don't miss the latest hottest bugs out there
-					</aside>
 				</section>
 
 				<section data-markdown>
@@ -602,12 +604,12 @@
 						- hook & track *all* the `def`initions across deps
 						- theoretically we could store them elsewhere
 						- and index/do best LSP
+					
+						note:
+						- Did you know intelij has an own language parser inside all of theirs ides?
+						- i.e. it rejects anything what runtime suggests, it's a pity
+						- it's a lack of a strong self-aware runtime
 					</textarea>
-					<aside class="notes">
-						Did you know intelij has an own language parser inside all of theirs ides?
-						i.e. it rejects anything what runtime suggests, it's a pity
-						it's a lack of a strong self-aware runtime
-					</aside>
 				</section>
 
 				<!-- ///// -->
@@ -694,11 +696,11 @@
 								(predicates.clj:132)
 						(not ("ifn?" #"a*b"))
 						```
-					</textarea>
-					<aside class="notes">
+						
+						note:
 						- one may argue that a logic shouldn't depend on classes and types, 
-						but people are doing this way
-					</aside>
+						- but people are doing this why-russian
+					</textarea>
 				</section>
 
 				<section data-markdown>
@@ -714,10 +716,10 @@
 						- src/jvm/clojure/lang/Compiler.java
 						- src/jvm/clojure/lang/LispReader.java
 						- src/jvm/clojure/lang/RT.java
+					
+						note:
+						- unless you're interested in persisted datastructures
 					</textarea>
-					<aside class="notes">
-						unless you're interested in persisted datastructures
-					</aside>
 				</section>
 
 				<section data-markdown>
@@ -731,10 +733,10 @@
 						- intended in a very *special* way
 						- *almost* exclusively written by Rich
 						- *almost* untouched after 2011
-					</textarea>	
-					<aside class="notes">
-						holy rich!
-					</aside>
+					
+						note:
+						- holy rich!
+					</textarea>
 				</section>
 
 				<!-- <section data-markdown>
@@ -916,6 +918,9 @@
 
 				<section>
 					<h1>Questions</h1>
+					<hr>
+					<h4>this presentation</h4>
+					<img src="lib/images/qrlink.png" alt="razum2um" class="borderless qrlink" />
 					<hr>
 					<h3>Vlad Bokov</h3>
 					<h3><a href="http://lunatic.cat">vlad@lunatic.cat</a></h3>
