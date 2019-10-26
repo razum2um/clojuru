@@ -616,6 +616,20 @@
 						```
 					</textarea>
 				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Assoc custom Compiler/special
+
+						### recursive analyzeSeq => Expr
+
+						```
+						(reify clojure.lang.Compiler.Expr
+						  (eval [])
+						  (emit []))
+						```
+					</textarea>
+				</section>
 	
 				<section data-markdown>
 					<textarea data-template>
@@ -664,7 +678,7 @@
 
 				<section>
 					<h1>Regexp</h1>
-					<h2 class="fragment">you know, we'll have +1 problem more</h2>
+					<h2 class="fragment">you know, we have +1 problem more</h2>
 				</section>
 
 				<section data-markdown>
@@ -776,15 +790,7 @@
 					</textarea>
 				</section>
 
-				<!-- <section data-markdown>
-					<textarea data-template>
-						# Compiler
-
-						- recursive analyzeSeq => Expr
-						- switch on Parser classes
-						- interface IParser { Expr parse(C context, Object form) }
-					</textarea>
-				</section> -->
+				<!--  -->
 			
 				<!-- //////////////////  -->
 				
