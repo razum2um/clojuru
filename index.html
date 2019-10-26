@@ -598,6 +598,7 @@
 						- but `def` is not a clojure.lang.Var (no `alter-var-root`)
 						- it's `(get clojure.lang.Compiler/specials "def")`
 						- `clojure.lang.Compiler/specials` if `final` `PersistentHashMap`
+						- but it's possible to use it wrapped into `clojure.lang.Atom`
 					</textarea>
 				</section>
 
@@ -629,6 +630,22 @@
 						- Did you know intelij has an own language parser inside all of theirs ides?
 						- i.e. it rejects anything what runtime suggests, it's a pity
 						- it's a lack of a strong self-aware runtime
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Also possible this way to hook into:
+						
+						- try/catch/finally
+						- loop/recur
+						- if
+						- var
+						- set!
+						- quote
+					
+						note:
+						- every loop, including clojure.core and libraries
 					</textarea>
 				</section>
 
