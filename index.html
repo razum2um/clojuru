@@ -616,6 +616,20 @@
 						```
 					</textarea>
 				</section>
+				
+				<section data-markdown>
+					<textarea data-template>
+						# Assoc custom Compiler/special
+
+						### recursive analyzeSeq => Expr
+
+						```
+						(reify clojure.lang.Compiler.IParser
+					      (parse [])) ;; clojure.lang.Compiler.Expr
+						```
+					</textarea>
+				</section>
+		
 
 				<section data-markdown>
 					<textarea data-template>
