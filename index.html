@@ -58,6 +58,10 @@
 				margin-bottom: 1.2em;
 			} */
 
+			.reveal section.nobullet li {
+				list-style: none;
+			}
+
 			.reveal section ul {
 				margin-bottom: 0.2em;
 			}
@@ -70,13 +74,13 @@
 			img.clj,
 			img.razum2um,
 			img.mad,
-			img.godeeper,
 			img.hardcode,
 			img.map {
 				height: 700px;
 			}
 
-			img.why {
+			img.why,
+			img.godeeper {
 				height: 1200px;
 			}
 
@@ -327,7 +331,7 @@
 						- happens after parsing
 						- can read only proper value (wrapped/scalar) 
 						- contradicts clojure mantra
-							- by [@puredanger](http://insideclojure.org/2018/06/21/tagged-literal/)
+							- discouraged by [@puredanger](http://insideclojure.org/2018/06/21/tagged-literal/)
 						- [example gist](https://gist.github.com/razum2um/bdde7d13f47c31e42046f7b0b6aa818d)
 						
 						```
@@ -355,11 +359,11 @@
 					</aside>
 				</section>
 
-				<section data-markdown>
+				<section class='nobullet' data-markdown>
 					<textarea data-template>
-						# Let's talk about clojure.lang.LispReader
+						# Let's talk about 
 						
-						### Short intro into clojure source
+						- `clojure.lang.LispReader`
 					</textarea>
 				</section>
 
@@ -368,7 +372,7 @@
 						# What if you tired to hold shift:
 						
 						```
-						[take 10 [map inc [range 10]]]
+						[take 3 [map inc [range 10]]]
 						```
 					</textarea>
 				</section>
@@ -381,51 +385,32 @@
 						- indeed 4 lines-diff in reader
 						- requires current clojure std to be rewritten
 					</textarea>
-					<aside class="notes">
-						syntax? macros!
-					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Macro strikes back
+						
+						```
+						(defmacro lazy-typist [x]
+						  (clojure.walk/postwalk
+							 #(if (vector? %) (apply list %) %)
+							 x))
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Macro strikes back
+						
+						```
+						(lazy-typist [take 3 [map inc [range 10]]])
+						(1 2 3)
+						```
+					</textarea>
 				</section>
 					
-				<!-- <section data-markdown>
-					<textarea data-template>
-						# Deal with it
-
-						- src/jvm/clojure/lang/Compiler.java
-						- src/jvm/clojure/lang/LispReader.java
-						- src/jvm/clojure/lang/RT.java
-					</textarea>
-					<aside class="notes">
-						unless you're interested in persisted datastructures
-					</aside>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						# Deal with it
-
-						- src/jvm/clojure/lang/Compiler.java - 9125 lines
-						- src/jvm/clojure/lang/LispReader.java - 1699 lines
-						- src/jvm/clojure/lang/RT.java - 2438
-
-						- intended in a very *special* way
-						- *almost* exclusively written by Rich
-						- *almost* untouched after 2011
-					</textarea>	
-					<aside class="notes">
-						holy rich!
-					</aside>
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-						## Compiler
-
-						- recursive analyzeSeq => Expr
-						- switch on Parser classes
-						- interface IParser { Expr parse(C context, Object form) }
-					</textarea>
-				</section> -->
-	
 				<!-- //////////////////  -->
 
 				<section>
@@ -438,14 +423,22 @@
 						# So, lets talk about...
 					</textarea>
 				</section>
-			
+
+				<section data-markdown>
+					<textarea data-template>
+						# Bugs
+					</textarea>
+				</section>
+	
 				<section data-markdown>
 					<textarea data-template>
 						# Bugs
 
 						- [261 bugs open atm](https://clojure.atlassian.net/browse/CLJ-2522?jql=project%20%3D%20CLJ%20AND%20issuetype%20%3D%20Bug%20AND%20status%20%3D%20Open%20AND%20resolution%20%3D%20Unresolved%20ORDER%20BY%20priority%20DESC)
-						- there are farewell letters *due this*: [My Increasing Frustration With Clojure, 2016](http://ashtonkemerling.com/posts/my-increasing-frustration-with-clojure/)
-						- he mentioned 5 very long-running issues, 4 of them are still there
+						- there are farewell letters *due this*
+							- [My Increasing Frustration With Clojure, 2016](http://ashtonkemerling.com/posts/my-increasing-frustration-with-clojure/)
+						- author mentioned 5 very long-running issues (back then)
+							- 4 of them are still there
 					</textarea>
 				</section>
 
@@ -475,7 +468,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						# Dynamic types + interop != magic
+						# Dynamic + interop != magic
 
 						```
 						(def ^Long a -10000000000000)
@@ -488,7 +481,7 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						# Dynamic types + interop != magic
+						# Dynamic + interop != magic
 
 						- static double abs(double a)
 						- static float abs(float a)
@@ -499,7 +492,7 @@
 			
 				<section data-markdown>
 					<textarea data-template>
-						# Dynamic types + interop != magic
+						# Dynamic + interop != magic
 
 						- a is an Object
 						- Reflector.invokeMatchingMethod
@@ -510,32 +503,36 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						# Lets try to workaround it
+						# Lets try to workaround
 
-						### note: `^` is just a meta :tag
+						### `^` is just a `meta :tag`
 					</textarea>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						# Lets auto apply workaround
+						# Auto apply workaround
 
 						```
 						(defmacro defdef [name & body]
-						`(let [x# ~@body
-							t# (type x#)
-							v# (def ~name x#)]
-						(alter-meta! v# assoc :tag t#)
-						v#))
+						  `(let [x# ~@body t# (type x#)
+							     v# (def ~name x#)]
+						      (alter-meta! v# assoc :tag t#) v#))
 						```
 					</textarea>
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
-						# How about redefine `def`, poll:
+						# How about redefine `def`?
+					</textarea>
+				</section>
 
-						### what happens here
+				<section data-markdown>
+					<textarea data-template>
+						# Poll
+
+						### what happens (here and afterwards)?
 
 						```
 						(def def def)
@@ -543,6 +540,16 @@
 					</textarea>
 				</section>
 
+				<section data-markdown>
+					<textarea data-template>
+						# Answer
+
+						- it's ok
+						- defines `#'ns/def` like an alias
+						- clojure's `def` unchanged
+					</textarea>
+				</section>
+	
 				<section data-markdown>
 					<textarea data-template>
 						# How about redefine `def`?
@@ -597,10 +604,9 @@
 					</textarea>
 				</section>
 
-				<section data-markdown>
-					<textarea data-template>
-						# So, lets talk about...
-					</textarea>
+				<section>
+					<h1>Regexp</h1>
+					<h2 class="fragment">you know, we'll have +1 problem more</h2>
 				</section>
 
 				<section data-markdown>
@@ -635,10 +641,12 @@
 
 						### see [razum2um/clojure:pattern-ifn](https://github.com/razum2um/clojure/compare/master...razum2um:pattern-ifn)
 
-						- got rid of many typehints :(
-						- LispReader: RegexReader#invoke
-						- RT: print
-						- core_print.clj: print-dup & print-method
+						- a modest diff 😕
+							- 101 insertions(+), 31 deletions(-)
+						- got rid of many typehints 😭
+						- `LispReader`: RegexReader#invoke
+						- `RT`: print
+						- `core_print.clj`: print-dup & print-method
 					</textarea>
 				</section>
 
@@ -647,9 +655,9 @@
 						# Caveats
 
 						- breaks `(def ^Pattern #"")`
-							- [clojure/tools.reader](https://github.com/clojure/tools.reader/blob/23bfba4b3d4c35692beced1f2f64f818bdb64d75/src/main/clojure/clojure/tools/reader/impl/commons.clj#L46)
+							- notably: [clojure/tools.reader](https://github.com/clojure/tools.reader/blob/23bfba4b3d4c35692beced1f2f64f818bdb64d75/src/main/clojure/clojure/tools/reader/impl/commons.clj#L46)
 						- breaks `(instance? Pattern x)`
-							- [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
+							- notably: [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
 						- changes behaviour *tested* since 2009
 						
 						```
@@ -663,10 +671,56 @@
 						but people are doing this way
 					</aside>
 				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Observations during the ride
+					</textarea>
+				</section>
+
+				<section class='nobullet' data-markdown>
+					<textarea data-template>
+						# Deal with it
+
+						- src/jvm/clojure/lang/Compiler.java
+						- src/jvm/clojure/lang/LispReader.java
+						- src/jvm/clojure/lang/RT.java
+					</textarea>
+					<aside class="notes">
+						unless you're interested in persisted datastructures
+					</aside>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# Deal with it
+
+						- src/jvm/clojure/lang/Compiler.java - 9125 lines
+						- src/jvm/clojure/lang/LispReader.java - 1699 lines
+						- src/jvm/clojure/lang/RT.java - 2438 lines
+
+						- intended in a very *special* way
+						- *almost* exclusively written by Rich
+						- *almost* untouched after 2011
+					</textarea>	
+					<aside class="notes">
+						holy rich!
+					</aside>
+				</section>
+
+				<!-- <section data-markdown>
+					<textarea data-template>
+						# Compiler
+
+						- recursive analyzeSeq => Expr
+						- switch on Parser classes
+						- interface IParser { Expr parse(C context, Object form) }
+					</textarea>
+				</section> -->
 			
 				<!-- //////////////////  -->
 				
-				<section data-markdown>
+				<!-- <section data-markdown>
 					<textarea data-template>
 						# WHY#1
 
@@ -724,49 +778,6 @@
 						- 
 						- explore
 					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-					  # lets talk about parens
-						
-					  - search for fork
-					  - count difff lines for that
-					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about macros
-						
-						- still sexps
-						- validated
-						- not really a language, but DSL
-					</textarea>
-					<aside class="notes">
-						
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about read literals
-						
-						- beyond sexp
-						- discouraged
-					</textarea>
-					<aside class="notes">
-						
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about regexps
-						
-						- instead of (->> coll (filter #(re-find #"smth" %))) 
-						- you want this (->> coll (filter #"smth"))
-					</textarea>
-					<aside class="notes">
-						TODO: slide about 1 more problem
-						suppose you're often working in the repl and exploring data based on filtering of text values
-					</aside>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
@@ -859,16 +870,17 @@
 						- again - it's DEVELOPMENT clojure build, don't use on prod
 						- TODO: ads dunaj
 					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# fin
-						
-						- dream big
-						- change and adapt your tools for yourself
-						- think globally
-						- act locally
-					</textarea>
+				</section> -->
+
+				<!-- /////////// -->
+
+				<section>
+					<h1>FIN</h1>
+					<ul>
+						<li class="fragment">know your tools</li>
+						<li class="fragment">change and adapt your tools for yourself</li>
+						<li class="fragment">be happy</li>
+					</ul>
 				</section>
 			</div>
 		</div>
