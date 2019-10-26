@@ -75,10 +75,15 @@
 			img.razum2um,
 			img.mad,
 			img.hardcode,
-			img.lispreader,
 			img.qrlink,
+			img.python,
+			img.zero_key,
 			img.map {
 				height: 700px;
+			}
+
+			img.lispreader {
+				height: 900px;
 			}
 
 			img.why,
@@ -271,6 +276,7 @@
 					
 						note:
 						- verbosity of java is rather good
+						- who's read tonsky article - please go learn rust
 						- I'm keen to say that clj is the most flexible language (somewhere near ruby) I ever saw
 						- doesn't require to think about memry management and c-extensions byte-level stuff
 						- as the parser is basically a depth-first tree walk - a good (just as any lisp)
@@ -305,13 +311,18 @@
 					</textarea>
 				</section>
 
+				<section>
+					<h1>Way to go</h1>
+					<img class='borderless python' src='lib/images/python.png' />
+				</section>
+
 				<section data-markdown>
 					<textarea data-template>
 						# Ways to go
 
-						- Macros
-						- Tagged literals
-						- clojure.lang.LispReader
+						- write macros
+						- write parsers for tagged literals
+						- patch clojure.lang.LispReader
 					</textarea>
 				</section>
 
@@ -320,7 +331,8 @@
 						# Macros
 
 						- can read arbitrary number/nested of Symbols
-						- dont compose^W only compose with each other
+						- don't compose
+							- fix: only compose with each other
 						- you know'em, bro
 					</textarea>
 				</section>
@@ -353,11 +365,9 @@
 					<textarea data-template>
 						# [jwymanm/chiara](https://github.com/jwymanm/chiara)
 
+						- indentation-based clojure
 						- done by macros
 						- nobody cares for about 5 years
-						
-						note:
-						- the goal of making all code readable by all users of Clojure, without requiring optional code.
 					</textarea>
 				</section>
 
@@ -374,9 +384,16 @@
 					</textarea>
 				</section>
 
+				<section>
+					<h1>What if you tired to shift</h1>
+					<img src="lib/images/zero_key.jpg" alt="zero_key" class="borderless zero_key" />
+				</section>
+
 				<section data-markdown>
 					<textarea data-template>
-						# What if you tired to hold shift:
+						# What if you want this:
+
+						### and [vec 1 2 3] instead of (vec '(1 2 3)) or [1 2 3]
 						
 						```
 						[take 3 [map inc [range 10]]]
@@ -429,6 +446,9 @@
 						
 						- think globally
 						- act locally
+
+						note:
+						- but macroses are not always ok
 					</textarea>
 				</section>
 					
