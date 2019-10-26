@@ -234,7 +234,7 @@
 					<textarea data-template>
 						# Why talk about clojure?
 
-						- close to ruby as per "change-anything" at runtime (but JVM final)
+						- close to ruby as per "change-anything" at runtime (but JVM final+immutable)
 						- written in a clear high-level language
 						- *relatively* performant, [clojure-goes-fast](http://clojure-goes-fast.com/)
 						- source is quite educationable and *ideomatic*
@@ -363,7 +363,7 @@
 					<textarea data-template>
 						# How about redefine `def`?
 
-						- but `def` is not a clojure.lang.Var
+						- but `def` is not a clojure.lang.Var (no `alter-var-root`)
 						- it's `(get clojure.lang.Compiler/specials "def")`
 						- `clojure.lang.Compiler/specials` if `final` `PersistentHashMap`
 					</textarea>
@@ -371,14 +371,32 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						# Now what?
+						# @Compiler/specials
 
-						- we can hook & track *all* the `def`initions across deps
-						- theoretically we could store them elsewhere and *index*
+						### 4-line changes, [razum2um/clojure:cljdef](https://github.com/clojure/clojure/compare/master...razum2um:cljdef)
+
+						```
+						(swap! clojure.lang.Compiler/specials
+						  clojure.set/rename-keys {'def 'cljdef})
+						(cljdef a 1) ;; => #'user/a
+						(def x 2)    ;; => Syntax error
+						```
+					</textarea>
+				</section>
+	
+				<section data-markdown>
+					<textarea data-template>
+						# Now what? ;; TODO
+						
+						- impl. a IParser, put into `Compiler/specials`
+						- hook & track *all* the `def`initions across deps
+						- theoretically we could store them elsewhere
+						- and index/do best LSP
 					</textarea>
 					<aside class="notes">
 						Did you know intelij has an own language parser inside all of theirs ides?
 						i.e. it rejects anything what runtime suggests, it's a pity
+						it's a lack of a strong self-aware runtime
 					</aside>
 				</section>
 
