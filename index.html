@@ -29,7 +29,11 @@
 			.reveal section img.big {
 			  width: 90%;
 			}
-	   
+
+			.reveal section h3 {
+				text-transform: none;
+			}
+
 			.reveal,
 			.reveal h1,
 			.reveal h2,
@@ -47,7 +51,7 @@
 			}
 
 			section ul li {
-				font-size: 1.55em;
+				font-size: 2.2em;
 			}
 
 			.reveal section .borderless {
@@ -58,6 +62,7 @@
 			img.clj,
 			img.razum2um,
 			img.mad,
+			img.godeeper,
 			img.map {
 				height: 700px;
 			}
@@ -538,11 +543,42 @@
 
 				<!-- ///// -->
 
+				<section>
+					<h1>Go deeper</h1>
+					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
+				</section>
+
 				<section data-markdown>
 					<textarea data-template>
-						## Regex
+						# So, lets talk about...
+					</textarea>
+				</section>
 
-						- <3 IFn protocol by Vector & Map since day 0
+				<section data-markdown>
+					<textarea data-template>
+						# So, lets talk about...
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# What if you want
+
+						### (but java.util.regex.Pattern != IFn)
+
+						```
+						(->> coll
+							 (filter #"hello")
+							 (remove #"world"))
+						```
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						# clojure.lang.IFn
+
+						- Vector & Map implement this <3
 						- yes, calling semantics is questionable
 						- but y not?
 					</textarea>
@@ -550,9 +586,9 @@
 
 				<section data-markdown>
 					<textarea data-template>
-						## Caveats
+						# Caveats
 
-						- [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
+						- breaks things [AvisoNovate/pretty](https://github.com/AvisoNovate/pretty)
 						- and one of working projects bahaved very strange
 						- because of `(instance? Pattern)` :'(
 					</textarea>
