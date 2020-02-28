@@ -3,160 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 		<title>Hacking on clojure.core & runtime</title>
-
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<!-- <link rel="stylesheet" href="lib/css/monokai.css"> -->
 		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
-
-		<style>
-			@font-face {
-				font-family: 'Gill Sans';
-				font-style: normal;
-				font-weight: 400;
-				src: url('/fonts/GillSans.ttf') format("truetype");
-			}
-
-			.reveal section img.plain {
-			  width: 50%;
-			}
-	   
-			.reveal section img.big {
-			  width: 90%;
-			}
-
-			.reveal section h3 {
-				text-transform: none;
-			}
-
-			.reveal,
-			.reveal h1,
-			.reveal h2,
-			.reveal h3,
-			.reveal h4,
-			.reveal h5,
-			.reveal h6 {
-				font-family: 'Gill Sans', sans-serif !important;
-			}
-
-			.reveal section pre code {
-				font-size: 4em;
-				line-height: 1.5em;
-				max-height: 600px;
-			}
-
-			.reveal section > ul > li {
-				font-size: 2.2em;
-			}
-
-			/* .reveal section.margined ul {
-				margin-bottom: 1.2em;
-			} */
-
-			.reveal section.nobullet li {
-				list-style: none;
-			}
-
-			.reveal section ul {
-				margin-bottom: 0.2em;
-			}
-
-			.reveal section .borderless {
-				border: none;
-				box-shadow: none;
-			}
-
-			img.clj,
-			img.razum2um,
-			img.mad,
-			img.hardcode,
-			img.qrlink,
-			img.python,
-			img.zero_key,
-			img.map {
-				height: 700px;
-			}
-
-			img.lispreader {
-				height: 900px;
-			}
-
-			img.why,
-			img.godeeper {
-				height: 1200px;
-			}
-
-			img.miniclj {
-				height: 300px;
-			}
-
-			img.minigolang {
-				height: 300px;
-			}
-
-			.logos {
-				position: absolute;
-				display: flex;
-				width: 1400px;
-				top: 30%;
-				justify-content: space-between;
-				left: 50%;
-    			transform: translate(-50%, 0);
-			}
-
-			.logos .minigolang {
-				margin-top: 250px;
-			}
-
-			.disclaimer {
-				font-size: 0.5em;
-			}
-
-			.flex {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-
-			.vflex {
-				flex-direction: column;
-			}
-
-			.push-down {
-				margin-top: 5em;
-			}
-
-			.reveal li {
-				list-style-type: square;
-			}
-
-			.reveal .lower {
-				text-transform: lowercase;
-			}
-
-			.reveal .capital {
-				text-transform: capitalize;
-			}
-
-			.reveal .twophase,
-			.reveal .gtrend {
-				max-height: 500px;
-			}
-		</style>
-
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
 	</head>
 	<body>
 		<div class="reveal">
@@ -175,15 +25,6 @@
 						- we're doing outsource and continiously making things simpler(?)
 					</aside>
 				</section>
-
-				<!-- <section>
-					<img src="lib/images/mad.jpg" alt="mad" class="borderless mad" />
-					<h2>Mad Bokov</h2>
-					<aside class="notes">
-						- like to give mad talks
-					</aside>
-				</section> -->
-
 				<section data-markdown>
 					<textarea data-template>
 						# whoami
@@ -197,19 +38,6 @@
 						- also you could check my list of clojurian who you also may be interested to follow
 					</textarea>
 				</section>
-
-				<!-- <section>
-					<h1>Origin</h1>
-					<img src="lib/images/map.png" alt="map" class="borderless map" />
-					<div class="fragment logos">
-						<img class='borderless miniclj' src='lib/images/clj.png' />
-						<img class='borderless minigolang' src='lib/images/golang-russian.png' />
-					</div>
-					<aside class="notes">
-						- barnaul from moscow as far as go from clojure
-					</aside>
-				</section> -->
-
 				<section>
 					<h1><a href="http://twitter.com/hardcodefm">@hardcodefm</a> host</h1>
 					<img src="lib/images/hardcode.svg" alt="hardcodefm" class="borderless hardcode" />
@@ -290,9 +118,6 @@
 						# So, lets talk about...
 					</textarea>
 				</section>
-
-				<!-- ///////// -->
-		
 				<section>
 					<h1>Parens</h1>
 					<h2 class="fragment">))))</h2>
@@ -451,9 +276,6 @@
 						- but macroses are not always ok
 					</textarea>
 				</section>
-					
-				<!-- //////////////////  -->
-
 				<section>
 					<h1>Go deeper</h1>
 					<img src="lib/images/go-deeper.jpg" alt="godeeper" class="borderless godeeper" />
@@ -805,165 +627,6 @@
 						- holy rich!
 					</textarea>
 				</section>
-
-				<!--  -->
-			
-				<!-- //////////////////  -->
-				
-				<!-- <section data-markdown>
-					<textarea data-template>
-						# WHY#1
-
-						- I want to keep thinking in clojure 
-						- use clojure fns, semantic, dynamism / jvm batteries
-						- stay in REPL
-						- not access REPL state from the editor
-						- I care about my development flow
-						- not just typings amount
-						- about composability of little dirty pieces of code 
-						- easy to explore
-					</textarea>
-					<aside class="notes">
-						- I wont be talking about why evaling arbitrary sexps is bad, there's a very similar talk but about python notepads TODO link/slide
-						- I just mention, that I use emacs and I use cider, but mainly only refresh and at most 1 sexp eval of test code afterwards
-						- I dont eval 2 sexps 1 after another 
-						- I done eval buffers files etc
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# WHY repl-first
-
-						- copyable, immutable history
-						- next command is conj
-						- logged reproduce-ability
-						- instead of dirty in-place reevaluation
-						- TODO: ads cljsh
-					</textarea>
-					<aside class="notes">
-						- I wont be talking about why evaling arbitrary sexps is bad, there's a very similar talk but about python notepads TODO link/slide
-						- I just mention, that I use emacs and I use cider, but mainly only refresh and at most 1 sexp eval of test code afterwards
-						- I dont eval 2 sexps 1 after another 
-						- I done eval buffers files etc
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# WHY#2
-
-						- no clojure fork, (holy rich!)
-						- nothing strange inside the committed codebase
-						- not selling anything to anybody
-					</textarea>
-					<aside class="notes">
-						- just explaining how it works for me
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# why not CIDER / emacs plugin
-						- use clojure / jvm batteries
-						- stay in REPL
-						- not access REPL state from the editor
-						- 
-						- explore
-					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about brackets
-						
-						- instead of `(->> coll (filter #"smth"))`
-						- you want this `coll | filter #"smth"`
-						- i.e. a `|` searches first fn after last `|`, if there's such arity => close bracket, go 1 level up (as may closing brackets possible), otherwise open a bracket
-					</textarea>
-					<aside class="notes">
-						- yes you can, but I suggest to start looking at development of your own REPL instead of 
-						- TODO: ads rebel-readline1
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# modify prev command
-						
-						- `(-> obj fn-returns-coll (->> (map f1))))
-						- you want this `coll | filter #"smth"`
-						- i.e. a `|` searches first fn after last `|`, if there's such arity => close bracket, go 1 level up (as may closing brackets possible), otherwise open a bracket
-					</textarea>
-					<aside class="notes">
-						- does it reminds about bash pipe? yeah, bash pipe is awesome, unfortunately it's the only the single positive featute of bash and others 
-						- TODO: ads clj-condo
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about classloaders
-						
-						- java delegates search to parent first
-						- clojure is different: top searched first
-					</textarea>
-					<aside class="notes">
-						just to get on the same line - a couple of reminders how a typical classloader works in java
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about origins
-						
-						- `{}`, `[]` are clojure.lang.IMeta
-						- `String`, `Integer` etc are java native
-					</textarea>
-					<aside class="notes">
-						I wanted to track origin of the hashes in order to be able not just print 
-						I just remember you, that would just help me to write (oh god no, copypaste, we all love) tests for my function
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# lets talk about origins
-						
-						- `(def ring-req {...})
-						- instead of this `(is (= {:a 1 :b {...}} (f ring-req)}))`
-						- I wanted this `(is (= {:a 1 :b ring-req} (f ring-req)}))`
-						- ideally I wanted to deduce the shortest possible path
-						- without conditions
-						- to merge constants, variables and arguments into a result
-						- i.e. given a structure I wanted to ensure a presence of a unique codepath execution line corresponding to this
-						- and express it in terms of assoc/dissoc/merge/conj/disj
-					</textarea>
-					<aside class="notes">
-						I wanted to track origin of the hashes in order to be able not just print 
-						I just remember you, that would just help me to write (oh god no, copypaste, we all love) tests for my function
-						vars are changing but why
-					</aside>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# let's talk about startup time
-						
-						- `time clj -e ''`
-						- takes	2.06s on my MBP
-						- clj -A / lein repl / etc on a repl project
-						- takes forever
-					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-						# ideas
-						
-						- don't restart repl
-						- TODO: ads pomergranate
-						- persistent jvm
-						- TODO: link to why androind slow -> core
-						- reduce core by physically deleting functions
-						- what if we gather eveything on runtime and assume that we don't eval 
-						- again - it's DEVELOPMENT clojure build, don't use on prod
-						- TODO: ads dunaj
-					</textarea>
-				</section> -->
-
-				<!-- /////////// -->
-
 				<section>
 					<h1>FIN</h1>
 					<ul>
@@ -991,9 +654,6 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				width: 2400,
 				height: 1800,
@@ -1003,17 +663,7 @@
 				progress: true,
 				center: true,
 				touch: true,
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
-				// keyboard: {
-				// 	85: uChoice, // u
-				// 	68: dChoice,  // d
-				// 	49: uChoice, // u, "1"
-				// 	50: dChoice,  // d, "2"
-				// 	82: rChoice, // r
-				// 	78: nChoice, // n
-				// 	80: pChoice, // p
-				// 	72: goToHell  // h
-				// },
+				transition: 'slide',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
